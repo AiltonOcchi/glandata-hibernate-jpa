@@ -3,10 +3,10 @@ package br.com.glandata.main;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import br.com.glandata.dao.ProdutoDao;
 import br.com.glandata.model.Produto;
+import br.com.glandata.uil.JPAUtil;
 
 public class CadastroDeProduto {
 	public static void main(String[] args) {
@@ -16,11 +16,12 @@ public class CadastroDeProduto {
 		celular.setDescricao("Aparelho Celular 5G");
 		celular.setPreco(new BigDecimal("1200.00"));
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("glandata");
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = JPAUtil.getEntityManager();
+
+		ProdutoDao produtoDao = new ProdutoDao(em);
 
 		em.getTransaction().begin();
-		em.persist(celular);
+		produtoDao.cadastrar(celular);
 		em.getTransaction().commit();
 		em.close();
 
