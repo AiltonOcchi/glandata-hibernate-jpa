@@ -5,15 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(
-		name = "categorias", 
-		uniqueConstraints = {@UniqueConstraint(name = "nome_unique", columnNames = "nome") }
+		name = "categorias" 
+		//uniqueConstraints = {@UniqueConstraint(name = "nome_unique", columnNames = "nome") }
 		)
 public class Categoria {
 	
