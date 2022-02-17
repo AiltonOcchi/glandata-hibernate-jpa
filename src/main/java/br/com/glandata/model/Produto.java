@@ -23,7 +23,15 @@ import lombok.Setter;
 		//,uniqueConstraints = {@UniqueConstraint(name = "nome_unique", columnNames = "nome") }
 		)
 public class Produto {
+	
+	public Produto() {
+	}
+	
+	public Produto(Long id) {
+		this.id = id;
+	}
 
+	
 	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
 		super();
 		this.nome = nome;
@@ -31,6 +39,7 @@ public class Produto {
 		this.preco = preco;
 		this.categoria = categoria;
 	}
+
 
 	@Getter @Setter
 	@Id
@@ -47,12 +56,18 @@ public class Produto {
 	private BigDecimal preco;
 	
 	@Getter @Setter
-	@ManyToOne(fetch = FetchType.EAGER)
-	Categoria categoria;
+	@ManyToOne
+	private Categoria categoria;
 	
 	@Getter @Setter
 	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro = LocalDate.now();
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", categoria="
+				+ categoria + ", dataCadastro=" + dataCadastro + "]";
+	}
 	
 }
 

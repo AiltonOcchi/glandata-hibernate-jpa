@@ -1,6 +1,8 @@
 package br.com.glandata.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +18,16 @@ import lombok.Setter;
 		)
 public class Categoria {
 	
+	public Categoria() {
+	}
+	
+	
 	public Categoria(String nome) {
 		this.nome = nome;
+	}
+
+	public Categoria(Long id) {
+		this.id = id;
 	}
 
 	@Getter @Setter
@@ -26,7 +36,14 @@ public class Categoria {
 	private Long id;
 
 	@Getter @Setter
+	@Basic(optional = false, fetch = FetchType.LAZY)
 	private String nome;
+
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nome=" + nome + "]";
+	}
+	
 }
 
 
