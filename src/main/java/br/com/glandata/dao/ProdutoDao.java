@@ -18,6 +18,10 @@ public class ProdutoDao {
 
 	public void atualizar(Produto produto) {
 		em.merge(produto);
-		
+	}
+
+	public void remover(Produto produto) {
+		produto = em.merge(produto);
+		em.remove(produto);
 	}
 }
