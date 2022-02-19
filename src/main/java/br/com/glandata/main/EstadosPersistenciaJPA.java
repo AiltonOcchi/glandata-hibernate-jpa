@@ -11,14 +11,13 @@ public class EstadosPersistenciaJPA {
 		Categoria celulares = new Categoria("Celulares");// Estado transiente, não gerenciado
 		
 		EntityManager em = JPAUtil.getEntityManager();
-		em.getTransaction().begin();
 		
+		em.getTransaction().begin();
 		em.persist(celulares);// estado gerenciado
 		
 		celulares.setNome("COMPUTADORES"); // continua gerenciado
-		
+
 		em.getTransaction().commit();// faz alteração do nome
-		
 		em.close(); // estado detached
 	}
 }

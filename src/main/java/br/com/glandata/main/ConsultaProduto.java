@@ -6,23 +6,21 @@ import br.com.glandata.dao.ProdutoDao;
 import br.com.glandata.model.Produto;
 import br.com.glandata.uil.JPAUtil;
 
-public class RemoveProduto {
-	
+public class ConsultaProduto {
+
 	public static void main(String[] args) {
 		
-		Produto produto =  new Produto(14l);
-		
 		EntityManager em = JPAUtil.getEntityManager();
+		
 		ProdutoDao produtoDao = new ProdutoDao(em);
+		Produto produto =  produtoDao.buscarPorId(13l);
 		
-		em.getTransaction().begin();
+		System.out.println("Dados do Produto"+ produto);
 		
-		produtoDao.remover(produto);
+	    em.close();
 		
-		em.flush();
-		
-		em.getTransaction().commit();
-		em.close();
 	}
-	
+
 }
+
+
