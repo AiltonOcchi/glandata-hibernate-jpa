@@ -1,5 +1,6 @@
 package br.com.glandata.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -47,4 +48,27 @@ public class ProdutoDao {
 		return em.createQuery(jpql, Produto.class).getResultList();
 
 	}
+	
+	public List<Produto> buscarPorNome(String nome) {
+		String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome";// também podemos usar ?1
+		return em.createQuery(jpql, Produto.class)
+				.setParameter("nome", nome) //poderia ser o numero  que representa a interrogação
+				.getResultList();
+	}
+	
+	public List<Produto> buscarPorNomeDaCategoria(String nomeDaCategoria) {
+		String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
+		return em.createQuery(jpql, Produto.class)
+				.setParameter("nome", nomeDaCategoria)
+				.getResultList();
+	}
+	
+	public BigDecimal buscarPrecoDoProdutoPeloNome(String nomeDoProduto) {
+		String jpql = "SELECT p.preco FROM Produto p WHERE p.nome = :nome";// também podemos usar ?1
+		return em.createQuery(jpql, BigDecimal.class)
+				.setParameter("nome", nomeDoProduto)
+				.setMaxResults(1)
+				.getSingleResult();
+	}
+	
 }

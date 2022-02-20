@@ -14,8 +14,9 @@ public class ConsultaProduto {
 		
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		Produto produto =  produtoDao.buscarPorId(13l);
-		
 		System.out.println("Dados do Produto"+ produto);
+		
+		System.out.println("Preço da celular: "+ produtoDao.buscarPrecoDoProdutoPeloNome("Moto G30"));
 		
 	    em.close();
 		
