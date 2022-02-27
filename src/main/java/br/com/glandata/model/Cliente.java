@@ -10,37 +10,31 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(
-		name = "categorias" 
-		//uniqueConstraints = {@UniqueConstraint(name = "nome_unique", columnNames = "nome") }
-		)
-public class Categoria {
+@Table(name="clientes")
+public class Cliente {
 	
-	public Categoria() {
+	public Cliente() {
 	}
 	
+	public Cliente(Long id) {
+		this.id = id;		
+	}
 	
-	public Categoria(String nome) {
+	public Cliente(String nome, String cpf) {
 		this.nome = nome;
-	}
-
-	public Categoria(Long id) {
-		this.id = id;
+		this.cpf = cpf;
 	}
 
 	@Getter @Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Getter @Setter
 	private String nome;
-
-	@Override
-	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + "]";
-	}
 	
-}
+	@Getter @Setter
+	private String cpf;
 
+}
 
